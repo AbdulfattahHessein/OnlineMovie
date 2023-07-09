@@ -8,6 +8,7 @@ namespace OnlineMovie
     {
         static void Main(string[] args)
         {
+            //This code for test only
             Console.WriteLine("Click 1 for showing all movies");
             Console.WriteLine("Click 2 to search");
 
