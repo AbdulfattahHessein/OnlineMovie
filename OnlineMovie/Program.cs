@@ -1,6 +1,8 @@
 ﻿using OnlineMovie.Controllers;
 using OnlineMovie.Models;
 using OnlineMovie.Views;
+using System.Threading.Channels;
+using static System.Console;
 
 namespace OnlineMovie
 {
@@ -8,23 +10,20 @@ namespace OnlineMovie
     {
         static void Main(string[] args)
         {
-            //This code for test only
-            Console.WriteLine("Click 1 for showing all movies");
-            Console.WriteLine("Click 2 to search");
-
-            var input = int.Parse(Console.ReadLine());
-            switch (input)
+            do
             {
-                case 1:
-                    MovieController.Index();
-                    break;
-                case 2:
-                    Console.Clear();
-                    Console.Write("Enter movie name: ");
-                    var name = Console.ReadLine();
-                    MovieController.Search(name);
-                    break;
-            }
+                WriteLine("[1] Login           [2] Registration");
+                Write("Select your option: ");
+                var option = int.Parse(ReadLine());
+                switch (option)
+                {
+                    case 1: AccountController.Login(); break;
+
+                    case 2: AccountController.Registration(); break;
+                }
+                Write("Do you want to colse the program y / n :");
+            } while (ReadLine() == "n");
+
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace OnlineMovie.Models
 {
-    public class Admin : Person
+    public class Admin : User
     {
 
     }

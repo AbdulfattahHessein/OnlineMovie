@@ -1,6 +1,6 @@
 ﻿namespace OnlineMovie.Models
 {
-    public class Customer : Person
+    public class Customer : User
     {
         public List<Ticket> Tickets { get; set; }
     }

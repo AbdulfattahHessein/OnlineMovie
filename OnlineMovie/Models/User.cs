@@ -6,14 +6,19 @@ using System.Threading.Tasks;
 
 namespace OnlineMovie.Models
 {
-    public abstract class Person
+    public class User
     {
-        public int Id { get; set; }
+        private static int _count = 1;
+        public int Id { get; private set; } = _count++;
         public string Name { get; set; }
         public Address Address { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
         public Account Account { get; set; }
+        public User()
+        {
+            Account = new Account();
+        }
 
     }
 }
