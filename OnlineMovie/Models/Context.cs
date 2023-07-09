@@ -12,6 +12,8 @@ namespace OnlineMovie.Models
             new Movie(){Title = "Titanic", Description = "BLALALALLA"},
             new Movie(){Title = "Omar & Salma", Description = "BLALALALLA"}
         };
-        public static List<Account> Accounts { get; set; }
+        public static List<Customer> Customers { get; set; }
+        public static List<Hall> Halls { get; set; }
+
     }
 }

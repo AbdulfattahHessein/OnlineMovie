@@ -7,6 +7,5 @@
         Canceled,
         BlackListed,
         Blocked
-
     }
 }
