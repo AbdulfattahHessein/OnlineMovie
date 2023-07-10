@@ -25,19 +25,17 @@ namespace OnlineMovie.Views
 
             return user;
         }
-        public static User Login()
+        public static Account Login()
         {
+            Account account = new Account();
+
             Write("Username: ");
-            var username = ReadLine();
+            account.Username = ReadLine();
 
             Write("Password: ");
-            var password = ReadLine();
+            account.Password = ReadLine();
 
-            var user = Context.Users.FirstOrDefault(u => u.Account.Username == username && u.Account.Password == password);
-            if (user == null)
-                throw new Exception("Invalid username or password");
-
-            return user;
+            return account;
         }
     }
 }

@@ -27,7 +27,11 @@ namespace OnlineMovie.Controllers
         {
             try
             {
-                AccountViews.Login();
+                var account = AccountViews.Login();
+                var user = Context.Users.FirstOrDefault(u => u.Account == account);
+                if (user == null)
+                    throw new Exception("Invalid username or password");
+
                 Console.WriteLine("Login success");
             }
             catch (Exception e)

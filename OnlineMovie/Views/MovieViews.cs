@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using static System.Console;
 
 namespace OnlineMovie.Views
 {
@@ -14,13 +15,19 @@ namespace OnlineMovie.Views
         {
             foreach (Movie movie in movies)
             {
-                Console.WriteLine(movie);
+                WriteLine(movie);
             }
         }
-        public static void Add(Movie movie)
+        public static Movie Add()
         {
-            movie.Id = Context.Movies.Count + 1;
-            Context.Movies.Add(movie);  
+            Movie movie = new();
+            Write($"{nameof(movie.Title)}: ");
+            movie.Title = ReadLine();
+
+            Write($"{nameof(movie.Language)}: ");
+            movie.Language = ReadLine();
+
+            return movie;
         }
 
         public static void Remove(string title)
@@ -47,7 +54,6 @@ namespace OnlineMovie.Views
             {
                 int temp = oldMovie.Id;
                 oldMovie = editedMovie;
-                oldMovie.Id = temp;
             }
         }
 
@@ -64,7 +70,7 @@ namespace OnlineMovie.Views
                 Console.WriteLine($"Language: {movie.Language}");
                 Console.WriteLine($"Genre: {movie.Genre}");
                 Console.WriteLine($"ReleaseDate: {movie.ReleaseDate.ToString()}");
-              
+
                 if (movie.Shows != null && movie.Shows.Count > 0)
                 {
                     Console.WriteLine($"Shows: {movie.Shows.Count.ToString()}");
@@ -87,7 +93,7 @@ namespace OnlineMovie.Views
 
         public static List<Show> GetShows(string title)
         {
-            var movie = Context.Movies.Find(m => m.Title.ToLower().Contains(title.ToLower())); 
+            var movie = Context.Movies.Find(m => m.Title.ToLower().Contains(title.ToLower()));
             return movie.Shows;
         }
     }

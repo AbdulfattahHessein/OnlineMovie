@@ -16,6 +16,12 @@ namespace OnlineMovie.Controllers
 
             MovieViews.Index(movies);
         }
+        public static void Add()
+        {
+            var movie = MovieViews.Add();
+
+            Context.Movies.Add(movie);
+        }
         public static void Search(string name)
         {
             var movies = Context.Movies.Where(m => m.Title.ToLower().Contains(name.ToLower())).ToList();
