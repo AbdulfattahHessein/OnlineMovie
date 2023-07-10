@@ -9,8 +9,8 @@ namespace OnlineMovie.Models
     public static class Context
     {
         public static List<Movie> Movies { get; set; } = new List<Movie>() {
-            new Movie(){Title = "Titanic", Description = "BLALALALLA"},
-            new Movie(){Title = "Omar & Salma", Description = "BLALALALLA"}
+            new Movie(){Id=1, Title = "Titanic", Description = "BLALALALLA"},
+            new Movie(){Id=2, Title = "Omar & Salma", Description = "BLALALALLA"}
         };
         public static List<Customer> Customers { get; set; } = new();
         public static List<User> Users { get; set; } = new();

@@ -17,9 +17,11 @@ namespace OnlineMovie.Models
         public string Genre { get; set; }
         public DateTime ReleaseDate { get; set; }
         public List<Show> Shows { get; set; }
+
+
         public override string ToString()
         {
-            return $"| Title: {Title} | Description: {Description} |";
+            return $"Title: {Title} | Description: {Description}";
         }
     }
 }
