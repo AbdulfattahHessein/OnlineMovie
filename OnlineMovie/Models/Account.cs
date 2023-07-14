@@ -22,7 +22,7 @@ namespace OnlineMovie.Models
             Account other = (Account)obj;
             return Username == other.Username && Password == other.Password;
         }
-        public static bool operator ==(Account left, Account right)
+        public static bool operator ==(Account? left, Account? right)
         {
             if (ReferenceEquals(left, right))
                 return true;

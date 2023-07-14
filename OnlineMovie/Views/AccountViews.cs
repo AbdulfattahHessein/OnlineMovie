@@ -10,32 +10,32 @@ namespace OnlineMovie.Views
 {
     public static class AccountViews
     {
-        public static User Registration()
+        public static Customer Registration()
         {
+            var customer = new Customer();
+
             WriteLine("Enter your Information \n");
-            var user = new User();
+
             Write("Name: ");
-            user.Name = ReadLine();
+            customer.Name = ReadLine();
 
             Write("Username: ");
-            user.Account.Username = ReadLine();
+            customer.Username = ReadLine();
 
             Write("Password: ");
-            user.Account.Password = ReadLine();
+            customer.Password = ReadLine();
 
-            return user;
+            return customer;
         }
-        public static Account Login()
+        public static (string? Username, string? Password) Login()
         {
-            Account account = new Account();
-
             Write("Username: ");
-            account.Username = ReadLine();
+            var Username = ReadLine();
 
             Write("Password: ");
-            account.Password = ReadLine();
+            var Password = ReadLine();
 
-            return account;
+            return (Username, Password);
         }
     }
 }

@@ -14,8 +14,9 @@ namespace OnlineMovie.Controllers
         {
             try
             {
-                var user = AccountViews.Registration();
-                Context.Users.Add(user);
+                var customer = AccountViews.Registration();
+
+                Context.Users.Save(customer);
             }
             catch (Exception e)
             {
@@ -23,21 +24,21 @@ namespace OnlineMovie.Controllers
                 Console.WriteLine(e.Message);
             }
         }
-        public static void Login()
+        public static User? Login()
         {
             try
             {
-                var account = AccountViews.Login();
-                var user = Context.Users.FirstOrDefault(u => u.Account == account);
+                var loginUser = AccountViews.Login();
+                var user = Context.Users.FirstOrDefault(u => u.Username == loginUser.Username && u.Password == loginUser.Password);
                 if (user == null)
                     throw new Exception("Invalid username or password");
-
-                Console.WriteLine("Login success");
+                return user;
             }
             catch (Exception e)
             {
 
                 Console.WriteLine(e.Message);
+                return null;
             }
 
         }

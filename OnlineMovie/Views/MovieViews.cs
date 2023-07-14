@@ -13,19 +13,27 @@ namespace OnlineMovie.Views
     {
         public static void Index(List<Movie> movies)
         {
-            foreach (Movie movie in movies)
+            for (int i = 0; i < movies.Count; i++)
             {
-                WriteLine(movie);
+                WriteLine($"[{i + 1}] {movies[i].Title}");
             }
         }
         public static Movie Add()
         {
             Movie movie = new();
+
             Write($"{nameof(movie.Title)}: ");
             movie.Title = ReadLine();
 
-            Write($"{nameof(movie.Language)}: ");
-            movie.Language = ReadLine();
+            Write($"{nameof(movie.Description)}: ");
+            movie.Description = ReadLine();
+
+            Write($"{nameof(movie.DurationMins)}: ");
+            movie.DurationMins = int.Parse(ReadLine());
+
+            Write($"{nameof(movie.Genre)}: ");
+            movie.Genre = ReadLine();
+
 
             return movie;
         }
@@ -57,44 +65,63 @@ namespace OnlineMovie.Views
             }
         }
 
-        public static void ShowMovieDetails(string title)
+        public static void Details(Movie movie)
         {
-            var movie = Context.Movies.Find(m => m.Title.ToLower().Contains(title.ToLower()));
 
-            if (movie != null)
+            WriteLine($"Id: {movie.Id}");
+            WriteLine($"Title: {movie.Title}");
+            WriteLine($"Description: {movie.Description}");
+            WriteLine($"DurationMins: {movie.DurationMins}");
+            WriteLine($"Language: {movie.Language}");
+            WriteLine($"Genre: {movie.Genre}");
+            WriteLine($"ReleaseDate: {movie.ReleaseDate}");
+
+            if (movie.Shows != null && movie.Shows.Count > 0)
             {
-                Console.WriteLine($"Id: {movie.Id}");
-                Console.WriteLine($"Title: {movie.Title}");
-                Console.WriteLine($"Description: {movie.Description}");
-                Console.WriteLine($"DurationMins: {movie.DurationMins}");
-                Console.WriteLine($"Language: {movie.Language}");
-                Console.WriteLine($"Genre: {movie.Genre}");
-                Console.WriteLine($"ReleaseDate: {movie.ReleaseDate.ToString()}");
-
-                if (movie.Shows != null && movie.Shows.Count > 0)
+                Console.WriteLine($"Shows: {movie.Shows.Count}");
+                foreach (Show show in movie.Shows)
                 {
-                    Console.WriteLine($"Shows: {movie.Shows.Count.ToString()}");
-                    foreach (Show show in movie.Shows)
-                    {
-                        Console.WriteLine($"Show Number: {show.Id} | Start Time: {show.StartTime.ToString()}" +
-                            $" | End Time: {show.EndTime.ToString()} | Show Hall: {show.Hall.Name}");
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Shows: None");
+                    Console.WriteLine($"Show Number: {show.Id} | Start Time: {show.StartTime}" +
+                        $" | End Time: {show.EndTime} | Show Hall: {show.Hall.Name}");
                 }
             }
             else
             {
-                Console.WriteLine("Movie not found.");
+                Console.WriteLine("Shows: None");
             }
+
+        }
+        public static Movie Edit(Movie movie)
+        {
+
+            Details(movie);
+
+            var editMovie = new Movie();
+
+            Console.WriteLine("Enter the new movie details or leave them empty:");
+            Console.Write($"{nameof(movie.Title)} : ");
+            editMovie.Title = ReadLine();
+
+            Console.Write($"{nameof(movie.Description)} : ");
+            editMovie.Description = ReadLine();
+
+            Console.Write($"{nameof(movie.DurationMins)} : ");
+            if (String.IsNullOrEmpty(ReadLine()))
+                editMovie.DurationMins = 0;
+
+            Console.Write($"{nameof(movie.Language)} : ");
+            editMovie.Language = ReadLine();
+
+            Console.Write($"{nameof(movie.Genre)} : ");
+            editMovie.Genre = ReadLine();
+
+            Console.Write($"{nameof(movie.ReleaseDate)} (YYYY-MM-DD):");
+            editMovie.ReleaseDate = DateOnly.Parse(ReadLine());
+
+            return editMovie;
+
         }
 
-        public static List<Show> GetShows(string title)
-        {
-            var movie = Context.Movies.Find(m => m.Title.ToLower().Contains(title.ToLower()));
-            return movie.Shows;
-        }
+
     }
 }
