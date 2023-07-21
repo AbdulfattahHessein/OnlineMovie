@@ -15,8 +15,17 @@ namespace OnlineMovie.Views
             {
                 Console.WriteLine($"Start Time: {show.StartTime}");
                 Console.WriteLine($"End Time: {show.EndTime}");
+                Console.WriteLine($"Hall: {show.Hall.Name}");
             }
         }
+
+        public static void Details(Show show)
+        {
+            Console.WriteLine($"Start Time: {show.StartTime}");
+            Console.WriteLine($"End Time: {show.EndTime}");
+            Console.WriteLine($"Hall: {show.Hall.Name}");
+        }
+
         public static Show Add()
         {
 

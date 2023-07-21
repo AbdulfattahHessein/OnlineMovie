@@ -38,33 +38,6 @@ namespace OnlineMovie.Views
             return movie;
         }
 
-        public static void Remove(string title)
-        {
-            var movie = Context.Movies.Find(m => m.Title.ToLower().Contains(title.ToLower()));
-            if (movie != null)
-            {
-                Context.Movies.Remove(movie);
-            }
-            else
-                Console.WriteLine("Movie not found");
-        }
-
-        public static void Clear()
-        {
-            Context.Movies.Clear();
-        }
-
-        public static void Edit(string title, Movie editedMovie)
-        {
-            var oldMovie = Context.Movies.Find(m => m.Title.ToLower().Contains(title.ToLower()));
-
-            if (oldMovie != null)
-            {
-                int temp = oldMovie.Id;
-                oldMovie = editedMovie;
-            }
-        }
-
         public static void Details(Movie movie)
         {
 
@@ -91,7 +64,7 @@ namespace OnlineMovie.Views
             }
 
         }
-        public static Movie Edit(Movie movie)
+        public static Movie EditDetails(Movie movie)
         {
 
             Details(movie);
@@ -119,9 +92,94 @@ namespace OnlineMovie.Views
             editMovie.ReleaseDate = DateOnly.Parse(ReadLine());
 
             return editMovie;
-
         }
 
+        public static Show EditShows(Show show)
+        {
+            Console.Write($"{nameof(show.StartTime)} : ");
+            show.StartTime = DateTime.Parse(ReadLine());
 
+            Console.Write($"{nameof(show.EndTime)} : ");
+            show.EndTime = DateTime.Parse(ReadLine());
+
+            Console.Write($"{nameof(show.Hall)} : ");
+            show.Hall.Name = Console.ReadLine();
+
+            return show;
+        }
     }
 }
+        
+            //Console.Write("Do you want to edit the shows for this movie? (y/n): ");
+
+            //var option = Console.ReadLine();
+
+            //if (option.ToLower() == "y")
+            //{
+            //    Console.WriteLine("The movie has the following shows:");
+            //    foreach (var _show in movie.Shows)
+            //    {
+            //        Console.WriteLine(_show);
+            //    }
+
+            //    Console.Write("Enter the ID of the show you want to edit: ");
+            //    var showId = int.Parse(ReadLine());
+            //    var show = movie.Shows.Find(s => s.Id == showId);
+
+            //    if (show == null)
+            //    {
+            //        Console.WriteLine("Invalid show ID.");
+            //        return movie;
+            //    }
+
+
+
+
+
+
+
+
+        //        if (!string.IsNullOrEmpty(startTime))
+        //        {
+        //            show.StartTime = DateTime.Parse(startTime);
+        //        }
+        //        else
+        //        {
+        //            Console.WriteLine("Invalid start time.");
+        //        }
+
+
+
+        //        if (!string.IsNullOrEmpty(endTime))
+        //        {
+        //            show.EndTime = DateTime.Parse(endTime);
+        //        }
+        //        else
+        //        {
+        //            Console.WriteLine("Invalid End time.");
+        //        }
+
+        //        if (!string.IsNullOrEmpty(hallName))
+        //        {
+        //            var _hall = Context.Halls.Find(h => h.Name == hallName);
+
+        //            if (_hall == null)
+        //            {
+        //                Console.WriteLine("Invalid hall name.");
+        //                return movie;
+        //            }
+
+        //            else
+        //            {
+        //                show.Hall = _hall;
+        //            }
+        //        }
+        //    }
+
+
+        //    return editMovie;
+
+        //}
+
+
+   
