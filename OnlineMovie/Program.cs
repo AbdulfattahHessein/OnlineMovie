@@ -95,7 +95,7 @@ namespace OnlineMovie
                                                     var indexToMovie = MovieController.Index();
                                                     Write("Select movie you want to edit: ");
                                                     var movie = indexToMovie[int.Parse(ReadLine())];
-                                                    MovieController.Edit(movie.Id);
+                                                    MovieController.EditDetails(movie.Id);
                                                 }
                                                 break;
                                             default:
